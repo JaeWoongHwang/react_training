@@ -5,38 +5,13 @@ import Movie from './Movie';
 class App extends Component {
   // Render: componentWillMount() -> render() -> componentDidMount()
   // Update componentWillReceiveProps() -> shouldComponentUpdate() -> componentWillUpdate() -> render() -> componentDidUpdate()
-  state = {
-  }
-  
-  
+  state = {}
+    
   componentDidMount(){
-    setTimeout(() => {
-      this.setState({
-        movies : [
-          {
-            title:"Inception",
-            poster: "https://images-na.ssl-images-amazon.com/images/I/51ShRC1YMrL.jpg"
-          },
-          {
-            title: "Fight Club",
-            poster: "https://images-na.ssl-images-amazon.com/images/I/5190cUTcbZL._SY445_.jpg"
-          },
-          {
-        
-            title: "Antman and Wasp",
-            poster: "http://www.joblo.com/posters/images/full/antman_and_the_wasp_new.jpg"
-          },
-          {
-            title: "Godfather part2",
-            poster:  "https://i.pinimg.com/736x/7d/ec/20/7dec20321ec4bfa6ee704cb20f759d02--the-godfather-poster-godfather-.jpg"
-          },
-          {
-            title: "Little Forest",
-            poster: "https://pbs.twimg.com/media/DTj7VW6VAAAjXqM.jpg"
-          }
-        ]
-      }) 
-    }, 5000)
+    fetch('https://yts.am/api/v2/list_movies.json?sort_by=rating')
+    .then(response => response.json())
+    .then(json => console.log(json))
+    .catch(err => console.log(err))
   }
 
   _renderMovies = () =>{
